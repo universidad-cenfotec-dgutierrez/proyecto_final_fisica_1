@@ -72,3 +72,17 @@ plt.title('Posición vs Tiempo sobre la rampa')
 plt.grid(True)
 plt.legend()
 plt.show()
+
+
+# Guardar resultados de la etapa A–B
+# en un archivo JSON para la siguiente etapa
+resultados_AB = {
+    "v_B": v_mrua,  
+    "theta_rad": theta_rad,
+    "theta_deg": theta_deg
+}
+
+# Guardar resultados en archivo para la siguiente etapa
+import json
+with open("salida_AB.json", "w") as f:
+    json.dump(resultados_AB, f)
