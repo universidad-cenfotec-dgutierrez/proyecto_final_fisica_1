@@ -49,8 +49,29 @@ if abs(y_proj - y_C) <= 0.01:
 
     print(f"Velocidad al impactar: {v_impacto:.2f} m/s")
     print(f"Ángulo de impacto: {alpha_deg:.2f}°")
+
+    # Guardar resultados en archivo JSON para la etapa C–D
+    resultados_BC = {
+        "impacto": True,
+        "v_x": vx,
+        "v_y": vy,
+        "t_C": t_C,
+        "x_C": x_C,
+        "y_C": y_C
+    }
+
+    with open("salida_BC.json", "w") as f:
+        json.dump(resultados_BC, f, indent=4)
+
 else:
     print("No hay impacto: el proyectil no está a la altura del obstáculo.")
+    # Guardar archivo indicando que no hubo impacto
+    resultados_BC = {
+        "impacto": False
+    }
+
+    with open("salida_BC.json", "w") as f:
+        json.dump(resultados_BC, f, indent=4)
 
     # Crear arreglo de tiempos desde 0 hasta t_C
 t_values = np.linspace(0, t_C, 100)
