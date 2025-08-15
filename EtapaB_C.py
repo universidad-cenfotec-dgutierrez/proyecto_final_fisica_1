@@ -11,15 +11,14 @@ with open("salida_AB.json", "r") as f:
 
 v_B = datos["v_B"]
 theta_rad = datos["theta_rad"]
-theta_deg = datos["theta_deg"]
 
 print(f"Velocidad de entrada desde A–B: {v_B:.2f} m/s")
-print(f"Ángulo de salida desde la rampa: {theta_deg:.2f}°")
 
 # Ingreso de datos adicionales para la etapa B–C
 x_C = float(input("Posición horizontal del obstáculo (x_C) en m: "))
 y_C = float(input("Altura del obstáculo (y_C) en m: "))
-
+theta_deg =  float(input("Angulo de rampa: "))
+theta_rad = math.radians(theta_deg)
 # Componentes de la velocidad inicial (usando v_mrua de etapa A-B y ángulo theta_rad)
 v0x = v_B * math.cos(theta_rad)
 v0y = v_B * math.sin(theta_rad)
@@ -35,7 +34,7 @@ print(f"Tiempo estimado de llegada a x_C: {t_C:.3f} s")
 print(f"Altura del proyectil en x_C: {y_proj:.2f} m")
 print(f"Altura del obstáculo: {y_C:.2f} m")
 
-if abs(y_proj - y_C) <= 0.01:
+if abs(y_proj - y_C) <= 0.05:
     print("Impacto confirmado: la altura coincide con la del obstáculo.")
     
     # Calcular la velocidad en el momento del impacto
